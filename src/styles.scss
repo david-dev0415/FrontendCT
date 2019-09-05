@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+/* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
+
+
+body {
+  font-size: calc(12px + .35vw);
+}
+
+/**
+ * Letter spacing
+**/
+.l-spacing-10 {
+  letter-spacing: 10px;
+}
+
+.l-spacing-5 {
+  letter-spacing: 5px;
+}
+
+
+.non-selectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.m-t-7 {
+  margin-top: 7rem;
+}
+
+.m-t-6px {
+  position: relative;
+  top: 6px;
+}

@@ -1,0 +1,34 @@
+.card-width {
+    width: auto;
+}
+
+.bg-color-red-coonatra {
+    background: #ED3237;
+}
+
+.rounded-form-title {
+    border-radius: 7px;
+}
+
+.form-control {
+    outline: none;
+    border-style: solid;
+    border-color: #c5c5c5;
+    border-bottom-width: 0px;
+    border-left-width: 1px;
+    padding: 10px;
+} 
+
+.form-control:focus {
+    border: none;
+}
+
+/*
+ * Has danger
+ * 
+**/
+
+.has-danger {   
+    border-color: #ED3237;
+    background: #ED3237;
+}

@@ -1,0 +1,44 @@
+<div class="container mt-5 w-50">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex card align-items-center mx-auto card-width">
+                <div class="card-header">
+                    <img src="../../../assets/img/logo/logoCoonatra.png" class="animated infinite bounce delay-2s img-fluid mx-auto d-block">
+                </div>
+                <div class="card-body w-50 px-1">
+                    <h1 class="mt-2 mb-3 text-white-50 text-center font-weight-normal">Inicio de sesión</h1>
+                    <form [formGroup]="shape" (ngSubmit)="onSubmit()" class="needs-validation">
+                        <!-- Mensaje de alerta: validación de credenciales incorrectas -->
+                        <div *ngIf="isLoginError" class="rounded-pill bounceOutDown text-center alert alert-danger" role="alert">
+                            <i class="material-icons">error</i> Usuario y/o contaseña son incorrectos.
+                        </div>
+                        <!-- Campo número de identificación -->
+                        <div class="form-group">
+                            <label for="inputUsername" class="">Usuario</label>
+                            <input type="text" formControlName="username" class="form-control" id="inputUsername"
+                                aria-describedby="numberHelp" placeholder="" autocomplete="off">
+                            <!-- Mensaje sobre validación -->
+                            <small
+                                *ngIf="shape.controls['username'].dirty && shape.controls['username'].errors?.required"
+                                class="form-text mt-1 text-danger">El
+                                campo usuario es requerido</small>
+                            <small *ngIf="shape.controls['username'].errors?.minlength"
+                                class="form-text mt-1 text-muted">Digita más de 6 carácteres</small>
+                        </div>
+                        <!-- Campo contraseña -->
+                        <div class="form-group">
+                            <label for="inputPassword" class="">Contraseña</label>
+                            <input type="password" formControlName="password" class="form-control" id="inputPassword">
+                            <!-- Mensaje sobre validación -->
+                            <small
+                                *ngIf="shape.controls['password'].dirty && shape.controls['password'].errors?.required"
+                                class="form-text mt-1 text-danger">El
+                                campo contraseña es requerido</small>
+                        </div>
+                        <button type="submit" [disabled]="shape.invalid" class="btn btn-outline-success btn-block btn-lg my-1 ">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
