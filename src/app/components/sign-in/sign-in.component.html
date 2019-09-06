@@ -3,15 +3,15 @@
         <div class="col-12">
             <div class="d-flex card align-items-center mx-auto card-width">
                 <div class="card-header">
-                    <img src="../../../assets/img/logo/logoCoonatra.png" class="animated infinite bounce delay-2s img-fluid mx-auto d-block">
+                    <img src="../../../assets/img/logo/logoCoonatra.png" class="img-fluid mx-auto d-block">
                 </div>
                 <div class="card-body w-50 px-1">
                     <h1 class="mt-2 mb-3 text-white-50 text-center font-weight-normal">Inicio de sesión</h1>
                     <form [formGroup]="shape" (ngSubmit)="onSubmit()" class="needs-validation">
                         <!-- Mensaje de alerta: validación de credenciales incorrectas -->
-                        <div *ngIf="isLoginError" class="rounded-pill bounceOutDown text-center alert alert-danger" role="alert">
-                            <i class="material-icons">error</i> Usuario y/o contaseña son incorrectos.
-                        </div>
+                        <div [ngClass]="{ 'animated fadeIn d-block': isLoginError, 'animated fadeOut': !isLoginError }"
+                            class="rounded-pill text-center alert alert-danger d-none" role="alert">El usuario y/o contraseña son incorrectos</div>
+
                         <!-- Campo número de identificación -->
                         <div class="form-group">
                             <label for="inputUsername" class="">Usuario</label>
@@ -35,7 +35,8 @@
                                 class="form-text mt-1 text-danger">El
                                 campo contraseña es requerido</small>
                         </div>
-                        <button type="submit" [disabled]="shape.invalid" class="btn btn-outline-success btn-block btn-lg my-1 ">Entrar</button>
+                        <button type="submit" [disabled]="shape.invalid"
+                            class="btn btn-outline-success btn-block btn-lg my-1 ">Entrar</button>
                     </form>
                 </div>
             </div>

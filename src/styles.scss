@@ -2,8 +2,69 @@
 /* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
 
 
+html,
 body {
-  font-size: calc(12px + .35vw);
+  height: 100%;
+  font-size: 1rem;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.section-title {
+  background: #009688;
+  padding: 10px 40px;
+  position: relative;
+  margin: 5rem 0rem 2rem 0rem;
+}
+
+
+@media (max-width: 1200px) {
+  legend {
+    font-size: calc(1.275rem + 0.3vw);
+  }
+
+  h1,
+  .h1 {
+    font-size: calc(1.375rem + 1.5vw);
+  }
+
+  h2,
+  .h2 {
+    font-size: calc(1.325rem + 0.9vw);
+  }
+
+  h3,
+  .h3 {
+    font-size: calc(1.3rem + 0.6vw);
+  }
+
+  h4,
+  .h4 {
+    font-size: calc(1.275rem + 0.3vw);
+  }
+
+  .display-1 {
+    font-size: calc(1.725rem + 5.7vw);
+  }
+
+  .display-2 {
+    font-size: calc(1.675rem + 5.1vw);
+  }
+
+  .display-3 {
+    font-size: calc(1.575rem + 3.9vw);
+  }
+
+  .display-4 {
+    font-size: calc(1.475rem + 2.7vw);
+  }
+
+  .close {
+    font-size: calc(1.275rem + 0.3vw);
+  }
 }
 
 /**

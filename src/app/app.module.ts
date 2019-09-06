@@ -37,6 +37,7 @@ import { HttpErrorInterceptor } from './shared/HttpErrorInterceptor';
 import { UserService } from './shared/services/user.service';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AboutComponent } from './components/about/about.component';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AboutComponent } from './components/about/about.component';
     NavbarComponent,
     ForbiddenComponent,
     SignUpComponent,
-    AboutComponent
+    AboutComponent,
+    AccountComponent
   ],
   imports: [
     AppRoutingModule,

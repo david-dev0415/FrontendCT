@@ -9,6 +9,7 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { AccountComponent } from './components/account/account.component';
 
 /**
  * Auth
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'reports', component: ReportsComponent },
+  { path: 'account', component: AccountComponent },
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' }
 ];
 

@@ -29,9 +29,12 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/datatables.net-dt/css/test/jquery.dataTables.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/datatables.net/js/jquery.dataTables.js"
+            ]
           },
           "configurations": {
             "production": {
