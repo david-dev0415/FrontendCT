@@ -14,9 +14,12 @@ import { BrowserAnimationsModule  } from '@angular/platform-browser/animations';
  */
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { ReportsComponent } from './components/reports/reports.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AccountComponent } from './components/account/account.component';
+import { ReportsComponent } from './components/reports/reports.component';
+import { AboutComponent } from './components/about/about.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 /**
@@ -35,9 +38,7 @@ import { HttpErrorInterceptor } from './shared/HttpErrorInterceptor';
  * Services
  */
 import { UserService } from './shared/services/user.service';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { AboutComponent } from './components/about/about.component';
-import { AccountComponent } from './components/account/account.component';
+import { ReportsService } from './shared/services/reports.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AccountComponent } from './components/account/account.component';
   ],
   providers: [
     UserService,
+    ReportsService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

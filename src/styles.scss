@@ -13,13 +13,13 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
 .section-title {
   background: #009688;
   padding: 10px 40px;
   position: relative;
   margin: 5rem 0rem 2rem 0rem;
 }
-
 
 @media (max-width: 1200px) {
   legend {
@@ -84,6 +84,11 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.p-t-7 {
+  position: relative; 
+  top: 7rem;
 }
 
 .m-t-7 {

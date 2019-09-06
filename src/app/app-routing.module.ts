@@ -9,6 +9,7 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { AboutComponent } from './components/about/about.component';
 import { AccountComponent } from './components/account/account.component';
 
 /**
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'reports', component: ReportsComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'account', component: AccountComponent },
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' }
 ];

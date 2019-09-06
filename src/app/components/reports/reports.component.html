@@ -1,1 +1,134 @@
 <app-navbar></app-navbar>
+
+<p class="display-4 m-t-5 py-2 text-white section-title animated fadeIn fast">Reportes</p>
+
+<div class="container animated fadeIn">
+    <div class="row my-5">
+        <div class="col-12 py-3">
+            <div class="card mx-auto">
+                <div class="card-header w-100 p-0">
+                    <div class="row p-0 m-0">
+                        <div id="box-field-search" class="col-10 p-0 m-0">
+                            <form id="form-header" class="m-0">
+                                <div class="input-group mb-0">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="material-icons icon-search">search</i>
+                                        </span>
+                                    </div>
+                                    <input type="search" class="form-control" id="input-search"
+                                        placeholder="Número integrado del vehículo">
+                                </div>
+                            </form>
+                        </div>
+                        <div id="btn-options" class="col-2 text-center py-2 px-0 m-0">
+                            <span class="btn-group-sm">
+                                <button type="button" class="btn btn-outline-primary bmd-btn-fab">
+                                    <i class="material-icons">refresh</i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body table-responsive">
+                    <table id="tbl-reports"
+                        class="table mx-auto table-hover table-condensed table-borderless text-center">
+                        <thead class="">
+                            <tr class="text-center mr-4">
+                                <th scope="col">#</th>
+                                <th scope="col">Vehículo</th>
+                                <th scope="col">Viajes</th>
+                                <th scope="col">Pasajeros</th>
+                                <th scope="col">Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr class="" *ngFor="let report of listReports; let i = index;">
+                                <th scope="row"> {{ i + 1}} </th>
+                                <td scope="row">{{ report.vehiculo }}</td>
+                                <td>{{ report.viajes }}</td>
+                                <td>{{ report.pasajeros }}</td>
+                                <td scope="row">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-visibility" data-toggle="modal"
+                                        data-target="#exampleModalCenter" name="btnModal">
+                                        Ver <i class="material-icons icon-visibility d-inline mt-2">visibility</i>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Reporte detallado
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!--Detailed report -->
+                                                    <div class="container-fluid table-responsive">
+                                                        <table class="table table-striped table-sm">
+                                                            <thead>
+                                                                <tr class="bg-dark ">
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Ruta</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Inicio</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Fin</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Vel.Max</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Horas</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Pas.viaje</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Marc.Desc.</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Pas a cobrar</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Monto</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Km</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row"></th>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot></tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary mr-5"
+                                                        data-dismiss="modal">Cerrar</button>
+                                                    <!-- Posibility to export data -->
+                                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
