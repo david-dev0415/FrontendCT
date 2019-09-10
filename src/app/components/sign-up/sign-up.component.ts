@@ -17,7 +17,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(private userService: UserService, private toastr: ToastrService) {
     this.formValidator();    
-    this.showSuccess();
+    // this.showSuccess();
   }
 
   showSuccess() {
