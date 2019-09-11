@@ -8,6 +8,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 })
 export class AccountComponent implements OnInit {
 
+  show: boolean = false;
   shape: FormGroup;
 
   constructor() { 
@@ -29,5 +30,9 @@ export class AccountComponent implements OnInit {
         Validators.email
       ])
     });
+  }
+
+  showPassword() {
+    this.show = !this.show;
   }
 }

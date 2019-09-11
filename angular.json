@@ -27,7 +27,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+            "styles": [              
               "src/styles.scss",
               "node_modules/datatables.net-dt/css/test/jquery.dataTables.css",
               "node_modules/ngx-toastr/toastr.css"

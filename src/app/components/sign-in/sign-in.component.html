@@ -14,9 +14,9 @@
 
                         <!-- Campo número de identificación -->
                         <div class="form-group">
-                            <label for="inputUsername" class="">Usuario</label>
+                            <label for="inputUsername" class="">No. identificación</label>
                             <input type="text" formControlName="username" class="form-control" id="inputUsername"
-                                aria-describedby="numberHelp" placeholder="" autocomplete="off">
+                                aria-describedby="numberHelp" placeholder="" autocomplete="off" numbersOnly>
                             <!-- Mensaje sobre validación -->
                             <small
                                 *ngIf="shape.controls['username'].dirty && shape.controls['username'].errors?.required"
@@ -36,7 +36,7 @@
                                 campo contraseña es requerido</small>
                         </div>
                         <button type="submit" [disabled]="shape.invalid"
-                            class="btn btn-outline-success btn-block btn-lg my-1 ">Entrar</button>
+                            class="btn btn-outline-success btn-block btn-lg my-1">Entrar</button>
                     </form>
                 </div>
             </div>

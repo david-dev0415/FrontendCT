@@ -1,6 +1,6 @@
-<p>account works!</p>
 <app-navbar></app-navbar>
-<div class="container m-t-7">
+
+<div class="container m-t-7 animated fadeIn fast">
     <div clas="row">
         <div class="col-12">
             <div class="card" style="margin: auto; max-width: 75%;">
@@ -12,13 +12,13 @@
                         <div class="row">
                             <div class="col sm-12 md-6">
                                 <div class="form-group">
-                                    <label for="inputName" class="text-muted text-truncate">Nombres</label>
+                                    <label for="inputName" class="text-truncate">Nombres</label>
                                     <input type="text" formControlName="name" class="form-control" id="inputName">
                                 </div>
                             </div>
                             <div class="col sm-6 md-6">
                                 <div class="form-group">
-                                    <label for="inputLastname" class="text-muted text-truncate">Apellidos</label>
+                                    <label for="inputLastname" class="text-truncate">Apellidos</label>
                                     <input type="text" formControlName="lastname" class="form-control"
                                         id="inputLastname">
                                 </div>
@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col sm-12 md-6">
                                 <div class="form-group">
-                                    <label for="inputIdentificationNumber" class="text-muted text-truncate">No. de
+                                    <label for="inputIdentificationNumber" class="text-truncate">No. de
                                         identificación</label>
                                     <input type="text" formControlName="identificationNumber" class="form-control"
                                         id="inputIdentificationNumber">
@@ -35,17 +35,15 @@
                             </div>
                             <div class="col sm-12 md-6">
                                 <div class="form-group">
-                                    <label for="inputCellPhoneNumber" class="text-muted text-truncate">Número de
-                                        celular</label>
-                                    <input type="text" formControlName="cellPhoneNumber" class="form-control"
-                                        id="inputCellPhoneNumber">
+                                    <label for="inputPassword" class="text-truncate">Contraseña</label>
+                                    <input [type]="show ? 'text': 'password' " formControlName="password" class="form-control" id="inputMail">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col sm-12 ">
                                 <div class="form-group">
-                                    <label for="inputMail" class="text-muted text-truncate">Correo
+                                    <label for="inputMail" class="text-truncate">Correo
                                         electrónico</label>
                                     <input type="mail" formControlName="mail" class="form-control" id="inputMail">
                                 </div>

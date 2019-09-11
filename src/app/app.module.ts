@@ -39,6 +39,7 @@ import { HttpErrorInterceptor } from './shared/HttpErrorInterceptor';
  */
 import { UserService } from './shared/services/user.service';
 import { ReportsService } from './shared/services/reports.service';
+import { NumbersOnlyDirective } from './directives/number-only.directive';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ReportsService } from './shared/services/reports.service';
     ForbiddenComponent,
     SignUpComponent,
     AboutComponent,
-    AccountComponent
+    AccountComponent,
+    NumbersOnlyDirective
   ],
   imports: [
     AppRoutingModule,

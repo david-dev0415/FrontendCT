@@ -30,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 );
         }
         else {
-            this.router.navigateByUrl('/sign-in');
+            // this.router.navigateByUrl('/sign-in');
         }
     }
 }
