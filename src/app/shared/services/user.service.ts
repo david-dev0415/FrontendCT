@@ -11,7 +11,8 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class UserService {
 
-  readonly rootUrl = environment.rootUrl;
+  private readonly rootUrl = environment.rootUrl;
+  private readonly reqHeader: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
 
   constructor(private http: HttpClient) { }
 
@@ -44,20 +45,24 @@ export class UserService {
     return this.http.post(this.rootUrl + '/api/User/Register', body, { headers: reqHeader });
   }
 
-  userAuthentication(userName: string, password: string) {
-    var data = "username=" + userName + "&password=" + password + "&grant_type=password";
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
-    return this.http.post(this.rootUrl + '/token', data, { headers: reqHeader });
+  getAccount(userName: string) {
+    return this.http.get(this.rootUrl + `/api/User/Get/userName${userName}`, { headers: this.reqHeader });
   }
 
-  // getUserClaims() {
-  //   var claims = this.http.get(this.rootUrl + '/api/GetUserClaims').pipe(catchError(this.errorHandler));    
-  //   return claims;
-  // }
+  userAuthentication(userName: string, password: string) {
+    var data = "username=" + userName + "&password=" + password + "&grant_type=password";
+    // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    return this.http.post(this.rootUrl + '/token', data, { headers: this.reqHeader });
+  }
 
   getUserClaims() {
-    var claims = this.http.get(this.rootUrl + '/api/GetUserClaims').toPromise();
-    return claims;
+    try {
+      var claims = this.http.get(this.rootUrl + '/api/GetUserClaims').toPromise();
+      return claims;
+    } catch (Exception) {
+      console.log(Exception);
+    }
+
   }
 
   getAllRoles() {
@@ -68,7 +73,7 @@ export class UserService {
   roleMatch(allowedRoles: string[]): boolean {
     var isMatch = false;
     var userRoles: string[] = JSON.parse(localStorage.getItem('userRoles'));
-    if (userRoles != null)  {
+    if (userRoles != null) {
       allowedRoles.forEach(element => {
         if (userRoles.indexOf(element) > -1) {
           isMatch = true;
@@ -76,6 +81,6 @@ export class UserService {
         }
       });
       return isMatch;
-    }    
+    }
   }
 }

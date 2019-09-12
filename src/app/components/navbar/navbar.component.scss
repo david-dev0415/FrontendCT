@@ -1,15 +1,19 @@
 .title-navbar {
 
-    font-size: 1.5rem;
-    text-decoration: none;
+  font-size: 1.5rem;
+  text-decoration: none;
 
-    span {
-        color: #ED3237;
-    }
-    
+  span {
+    color: #ED3237;
+  }
+
 }
 
-a.nav-link i {
-    position: relative;
-    top: 3px;
+i.material-icons {
+  position: relative;
+  top: 3px;
+}
+
+.dropdown-menu a {
+    font-size: .8rem;
 }
