@@ -8,7 +8,7 @@
                     <p class="py-0 display-4 text-center">Información de cuenta</p>
                 </div>
                 <div class="card-body px-3 pb-0">
-                    <form [formGroup]="shape" (ngSubmit)="onSubmit()">
+                    <form [formGroup]="shape">
                         <div class="row">
                             <div class="col sm-12 md-6">
                                 <div class="form-group">
@@ -48,14 +48,53 @@
                                         requerido</small>
                                     <small
                                         *ngIf="shape.controls['mail'].dirty && shape.controls['mail'].errors?.required"
-                                        class="form-text mt-1 text-danger">El campo no tiene el formato de correo electrónico</small>
+                                        class="form-text mt-1 text-danger">El campo no tiene el formato de correo
+                                        electrónico</small>
                                 </div>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
                             <div class="form-group mx-auto">
                                 <input type="submit" [disabled]="shape.invalid" class="btn mt-3 btn-raised btn-primary"
-                                    value="Modificar datos" aria-pressed="true">
+                                    value="Modificar datos" aria-pressed="true" data-toggle="modal"
+                                    data-target="#modalConfirmData">
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalConfirmData" data-backdrop="static" data-keyboard="false"
+                            tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmar modificación de datos
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <form class="px-4">
+                                                    <div class="form-group">
+                                                        <label for="inputPassword">Contraseña</label>
+                                                        <input type="password" class="form-control" #password
+                                                            id="inputPassword">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="button" (onclick)="onSubmit(password)"
+                                                            class="btn btn-outline-primary">Guardar
+                                                            cambios</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="modal-footer">                                    
+                                        
+                                    </div> -->
+                                </div>
                             </div>
                         </div>
                     </form>

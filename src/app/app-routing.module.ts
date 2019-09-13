@@ -11,6 +11,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { AboutComponent } from './components/about/about.component';
 import { AccountComponent } from './components/account/account.component';
+// import { RequestPasswordComponent } from './components/request-password/request-password.component';
+
 
 /**
  * Auth

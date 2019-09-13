@@ -40,6 +40,7 @@ import { HttpErrorInterceptor } from './shared/HttpErrorInterceptor';
 import { UserService } from './shared/services/user.service';
 import { ReportsService } from './shared/services/reports.service';
 import { NumbersOnlyDirective } from './directives/number-only.directive';
+import { RequestPasswordComponent } from './components/request-password/request-password.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { NumbersOnlyDirective } from './directives/number-only.directive';
     SignUpComponent,
     AboutComponent,
     AccountComponent,
-    NumbersOnlyDirective
+    NumbersOnlyDirective,
+    RequestPasswordComponent
   ],
   imports: [
     AppRoutingModule,

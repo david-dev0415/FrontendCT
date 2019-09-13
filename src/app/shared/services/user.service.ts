@@ -55,6 +55,11 @@ export class UserService {
     return this.http.post(this.rootUrl + '/token', data, { headers: this.reqHeader });
   }
 
+  checkPassword():boolean {
+    
+    return true;
+  }
+
   getUserClaims() {
     try {
       var claims = this.http.get(this.rootUrl + '/api/GetUserClaims').toPromise();
@@ -62,7 +67,6 @@ export class UserService {
     } catch (Exception) {
       console.log(Exception);
     }
-
   }
 
   getAllRoles() {

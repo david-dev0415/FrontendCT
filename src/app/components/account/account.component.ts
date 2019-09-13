@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../../shared/services/user.service';
+import { Router, ActivatedRoute } from '@angular/router';
 // import { IAccountInterface } from './IAccount.interface';
 
 @Component({
@@ -8,7 +9,7 @@ import { UserService } from '../../shared/services/user.service';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit{
+export class AccountComponent implements OnInit {
 
   private email;
   private name;
@@ -18,7 +19,7 @@ export class AccountComponent implements OnInit{
   show: boolean = false;
   shape: FormGroup;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
     this.showData();
     this.formValidator();
   }
@@ -37,7 +38,7 @@ export class AccountComponent implements OnInit{
         this.lastName = element['LastName'];
         this.userName = element['UserName'];
         this.email = element['Email'];
-      }       
+      }
     }
 
     return this.shape = new FormGroup({
@@ -58,7 +59,6 @@ export class AccountComponent implements OnInit{
   showData() {
     let userClaims = this.userService.getUserClaims(),
       data = null;
-    // Crear mejor solución para no repetir código al momento de llamar al método formValidator
     userClaims.then(values => {
       if (values != null)
         this.formValidator(values);
@@ -67,9 +67,16 @@ export class AccountComponent implements OnInit{
     });
   }
 
-  onSubmit() {
-    console.log(this.shape);
+  onSubmit(password) {
+    alert('1');
+    if (password.length > 0)
+      console.log(password);
+    return true;
   }
-  
+
+  checkPassword(password?: string) {
+
+  }
+
 
 }
