@@ -1,8 +1,10 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../../shared/services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
-// import { IAccountInterface } from './IAccount.interface';
+import { ToastrService } from 'ngx-toastr';
+
+declare var $: any;
 
 @Component({
   selector: 'app-account',
@@ -14,12 +16,14 @@ export class AccountComponent implements OnInit {
   private email;
   private name;
   private lastName;
-  private userName;
-
+  private userName: any;
+  passwordRequired = false;
+  passwordError = false;
+  passwordModel: string = "";
   show: boolean = false;
   shape: FormGroup;
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private toastService: ToastrService) {
     this.showData();
     this.formValidator();
   }
@@ -52,6 +56,10 @@ export class AccountComponent implements OnInit {
     });
   }
 
+  clearPasswordField() {
+    $("#inputPassword").val('');
+  }
+
   showPassword() {
     this.show = !this.show;
   }
@@ -60,23 +68,52 @@ export class AccountComponent implements OnInit {
     let userClaims = this.userService.getUserClaims(),
       data = null;
     userClaims.then(values => {
-      if (values != null)
-        this.formValidator(values);
+      // if (values != null)
+      //   this.formValidator(values);
+      if (values != null && values.hasOwnProperty("UserName")) {
+        this.userName = values['UserName'];
+        this.userService.getAccount(this.userName).subscribe(
+          res => {
+            this.formValidator(res);
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      }
     }).catch(error => {
-      console.error(error);
+      this.router.navigate(['/sign-in']);
     });
   }
 
-  onSubmit(password) {
-    alert('1');
-    if (password.length > 0)
-      console.log(password);
-    return true;
+  onSubmit(password?: any) {
+    if (this.passwordModel == "" && password.value.length > 0) {
+      this.userService.checkPassword(this.userName, password.value).toPromise().then(check => {
+        if (!check) {
+          this.passwordError = true;
+        } else {
+          this.userService.editUser(this.shape.value, password.value).subscribe(
+            res => {
+              if (res != null) {
+                this.toastService.success(`Su usuario ${this.userName} fue modificado con éxito.`, 'Solicitud correcta');
+                setTimeout(() => {
+                  this.router.navigate(['/home']);                  
+                }, 2000);
+              }
+            },
+            err => {
+              console.log(err);
+              this.toastService.error('Ocurrió un error al enviar la solicitud', 'Ups!, lo sentimos');
+            }
+          );
+        }
+  
+      }).catch(err => {
+        console.log(err);
+      });
+    } else {
+      
+    }
   }
-
-  checkPassword(password?: string) {
-
-  }
-
 
 }

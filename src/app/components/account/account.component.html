@@ -69,7 +69,8 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Confirmar modificación de datos
                                         </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" (click)="clearPasswordField()" class="close"
+                                            data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -80,10 +81,16 @@
                                                     <div class="form-group">
                                                         <label for="inputPassword">Contraseña</label>
                                                         <input type="password" class="form-control" #password
-                                                            id="inputPassword">
+                                                            id="inputPassword" ([ngModel])="passwordModel">
+                                                        <small *ngIf="passwordRequired && !password.value"
+                                                            class="form-text mt-1 text-danger">* Usted debe de
+                                                            diligenciar su contraseña de acceso.</small>
+                                                        <small *ngIf="passwordError"
+                                                            class="form-text mt-1 text-danger">* Lo sentimos, la
+                                                            contraseña que usted ha ingresado es incorrecta.</small>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <button type="button" (onclick)="onSubmit(password)"
+                                                    <div class="form-group d-flex flex-row-reverse">
+                                                        <button type="button" (click)="onSubmit(password)"
                                                             class="btn btn-outline-primary">Guardar
                                                             cambios</button>
                                                     </div>

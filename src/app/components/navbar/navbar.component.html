@@ -43,10 +43,13 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text text-muted text-uppercase d-inline" [routerLink]="['/account']">
                             <i class="material-icons text-white-50 pr-1">account_box</i>Cuenta</a>
-                        <a class="dropdown-item text text-muted text-uppercase d-inline" [routerLink]="['/changePassword']">
+                        <a class="dropdown-item text text-muted text-uppercase d-inline"
+                            [routerLink]="['/request-password']">
                             <i class="material-icons text-white-50 pr-1">vpn_key</i>Cambiar contraseña</a>
                         <div class="dropdown-divider"></div>
-                        <a class="btn dropdown-item text-danger" (click)="logout()">Cerrar sesión</a>
+                        <a class="btn dropdown-item text-danger" (click)="logout()">
+                            <i class="material-icons text-white-50" style="position: relative; top: -1px;">exit_to_app</i>Cerrar sesión
+                        </a>
                     </div>
                 </li>
             </ul>

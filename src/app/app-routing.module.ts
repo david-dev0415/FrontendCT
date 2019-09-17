@@ -11,7 +11,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { AboutComponent } from './components/about/about.component';
 import { AccountComponent } from './components/account/account.component';
-// import { RequestPasswordComponent } from './components/request-password/request-password.component';
+import { RequestPasswordComponent } from './components/request-password/request-password.component';
 
 
 /**
@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'reports', component: ReportsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'request-password', component: RequestPasswordComponent },
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' }
 ];
 

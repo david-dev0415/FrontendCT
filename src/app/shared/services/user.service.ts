@@ -45,21 +45,45 @@ export class UserService {
     return this.http.post(this.rootUrl + '/api/User/Register', body, { headers: reqHeader });
   }
 
+  editUser(data: any, password: string) {
+    const body = {
+      UserName: data.identificationNumber,
+      Password: password,
+      Email: data.mail,
+      FirstName: data.name,
+      LastName: data.lastname
+    } 
+    // console.log(body);
+    return this.http.put(this.rootUrl + '/api/User/Edit', body);
+  }
+
   getAccount(userName: string) {
     return this.http.get(this.rootUrl + `/api/User/Get/userName${userName}`, { headers: this.reqHeader });
   }
 
   userAuthentication(userName: string, password: string) {
     var data = "username=" + userName + "&password=" + password + "&grant_type=password";
-    // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
     return this.http.post(this.rootUrl + '/token', data, { headers: this.reqHeader });
   }
 
-  checkPassword():boolean {
-    
-    return true;
+  checkPassword(username: any, password: string) {
+    var body = {
+      UserName: username,
+      Password: password,
+      Email: null,
+      FirstName: null,
+      LastName: null
+    }
+    var result = this.http.post(this.rootUrl + '/api/User/CheckPassword', body);    
+    // console.log(body);
+    return result;
   }
 
+  // checkPasswordTest(username: string, password: string) {  
+  //   var result = this.http.get(this.rootUrl + `/api/User/GetCheckPassword/${username}/${password}`);
+  //   return result;
+  // }
+  
   getUserClaims() {
     try {
       var claims = this.http.get(this.rootUrl + '/api/GetUserClaims').toPromise();
