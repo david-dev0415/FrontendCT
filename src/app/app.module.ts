@@ -41,6 +41,7 @@ import { UserService } from './shared/services/user.service';
 import { ReportsService } from './shared/services/reports.service';
 import { NumbersOnlyDirective } from './directives/number-only.directive';
 import { RequestPasswordComponent } from './components/request-password/request-password.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { RequestPasswordComponent } from './components/request-password/request-
     AboutComponent,
     AccountComponent,
     NumbersOnlyDirective,
-    RequestPasswordComponent
+    RequestPasswordComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,

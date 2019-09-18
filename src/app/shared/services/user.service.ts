@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import { User } from '../user.model';
 import { environment } from '../../../environments/environment.prod';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -14,7 +15,7 @@ export class UserService {
   private readonly rootUrl = environment.rootUrl;
   private readonly reqHeader: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -52,9 +53,17 @@ export class UserService {
       Email: data.mail,
       FirstName: data.name,
       LastName: data.lastname
-    } 
-    // console.log(body);
+    }     
     return this.http.put(this.rootUrl + '/api/User/Edit', body);
+  }
+
+  editPassword(data: any) {
+    const body = {
+      UserName: data.identificationNumber,
+      Password: data.Password,
+      newPassword: data.newPassword
+    }
+    return this.http.put(this.rootUrl + '/api/User/PutPassword', body);
   }
 
   getAccount(userName: string) {
@@ -90,6 +99,7 @@ export class UserService {
       return claims;
     } catch (Exception) {
       console.log(Exception);
+      this.router.navigateByUrl('/sign-in');
     }
   }
 

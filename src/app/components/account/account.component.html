@@ -44,11 +44,11 @@
                                         autocomplete="off">
                                     <small
                                         *ngIf="shape.controls['mail'].dirty && shape.controls['mail'].errors?.required"
-                                        class="form-text mt-1 text-danger">El campo de correo electrónico es
+                                        class="form-text mt-1 text-danger animated fadeIn faster">El campo de correo electrónico es
                                         requerido</small>
                                     <small
                                         *ngIf="shape.controls['mail'].dirty && shape.controls['mail'].errors?.required"
-                                        class="form-text mt-1 text-danger">El campo no tiene el formato de correo
+                                        class="form-text mt-1 text-danger animated fadeIn faster">El campo no tiene el formato de correo
                                         electrónico</small>
                                 </div>
                             </div>
@@ -83,10 +83,10 @@
                                                         <input type="password" class="form-control" #password
                                                             id="inputPassword" ([ngModel])="passwordModel">
                                                         <small *ngIf="passwordRequired && !password.value"
-                                                            class="form-text mt-1 text-danger">* Usted debe de
+                                                            class="form-text mt-1 text-danger animated fadeIn faster">* Usted debe de
                                                             diligenciar su contraseña de acceso.</small>
                                                         <small *ngIf="passwordError"
-                                                            class="form-text mt-1 text-danger">* Lo sentimos, la
+                                                            class="form-text mt-1 text-danger animated fadeIn faster">* Lo sentimos, la
                                                             contraseña que usted ha ingresado es incorrecta.</small>
                                                     </div>
                                                     <div class="form-group d-flex flex-row-reverse">
@@ -110,3 +110,5 @@
         </div>
     </div>
 </div>
+
+<app-footer></app-footer>

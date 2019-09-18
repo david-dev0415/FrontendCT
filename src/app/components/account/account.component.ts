@@ -65,11 +65,8 @@ export class AccountComponent implements OnInit {
   }
 
   showData() {
-    let userClaims = this.userService.getUserClaims(),
-      data = null;
+    let userClaims = this.userService.getUserClaims();
     userClaims.then(values => {
-      // if (values != null)
-      //   this.formValidator(values);
       if (values != null && values.hasOwnProperty("UserName")) {
         this.userName = values['UserName'];
         this.userService.getAccount(this.userName).subscribe(
