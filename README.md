@@ -26,3 +26,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 # FrontendCT
+
+Frontend is the manual task automation project. (It is the visual platform, which makes requests to operations that communicate directly with the database).
+
+Reporting platform for users named "partners" by the Cooperative Cooperative. A solution is constructed to avoid sending mass mailings by the Cooperative to its associates.
+
+The report module will present visually the information that the associate requires, such as: number of passengers for a trip, amount of mileage for a trip, number of passengers mobilized during the day; etc.
