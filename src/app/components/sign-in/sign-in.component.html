@@ -10,20 +10,20 @@
                     <form [formGroup]="shape" (ngSubmit)="onSubmit()" class="needs-validation">
                         <!-- Mensaje de alerta: validación de credenciales incorrectas -->
                         <div [ngClass]="{ 'animated fadeIn d-block': isLoginError, 'animated fadeOut': !isLoginError }"
-                            class="rounded-pill text-center alert alert-danger d-none" role="alert">El usuario y/o contraseña son incorrectos</div>
+                            class="rounded-pill text-center alert alert-danger d-none" role="alert">El usuario y/o contraseña son incorrectos.</div>
 
                         <!-- Campo número de identificación -->
                         <div class="form-group">
-                            <label for="inputUsername" class="">Usuario</label>
+                            <label for="inputUsername" class="">No. identificación</label>
                             <input type="text" formControlName="username" class="form-control" id="inputUsername"
-                                aria-describedby="numberHelp" placeholder="" autocomplete="off">
+                                aria-describedby="numberHelp" placeholder="" autocomplete="off" numbersOnly>
                             <!-- Mensaje sobre validación -->
                             <small
                                 *ngIf="shape.controls['username'].dirty && shape.controls['username'].errors?.required"
-                                class="form-text mt-1 text-danger">El
-                                campo usuario es requerido</small>
+                                class="form-text mt-1 text-danger animated fadeIn faster">El
+                                campo usuario es requerido.</small>
                             <small *ngIf="shape.controls['username'].errors?.minlength"
-                                class="form-text mt-1 text-muted">Digita más de 6 carácteres</small>
+                                class="form-text mt-1 text-muted animated fadeIn faster">Digita más de 6 carácteres.</small>
                         </div>
                         <!-- Campo contraseña -->
                         <div class="form-group">
@@ -32,11 +32,11 @@
                             <!-- Mensaje sobre validación -->
                             <small
                                 *ngIf="shape.controls['password'].dirty && shape.controls['password'].errors?.required"
-                                class="form-text mt-1 text-danger">El
-                                campo contraseña es requerido</small>
+                                class="form-text mt-1 text-danger animated fadeIn faster">El
+                                campo contraseña es requerido.</small>
                         </div>
                         <button type="submit" [disabled]="shape.invalid"
-                            class="btn btn-outline-success btn-block btn-lg my-1 ">Entrar</button>
+                            class="btn btn-outline-success btn-block btn-lg my-1">Entrar</button>
                     </form>
                 </div>
             </div>

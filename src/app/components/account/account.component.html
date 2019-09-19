@@ -1,6 +1,6 @@
-<p>account works!</p>
 <app-navbar></app-navbar>
-<div class="container m-t-7">
+
+<div class="container m-t-7 animated fadeIn fast">
     <div clas="row">
         <div class="col-12">
             <div class="card" style="margin: auto; max-width: 75%;">
@@ -12,49 +12,96 @@
                         <div class="row">
                             <div class="col sm-12 md-6">
                                 <div class="form-group">
-                                    <label for="inputName" class="text-muted text-truncate">Nombres</label>
-                                    <input type="text" formControlName="name" class="form-control" id="inputName">
+                                    <label for="inputName" class="text-truncate">Nombres</label>
+                                    <input type="text" formControlName="name" class="form-control" id="inputName"
+                                        autocomplete="off">
                                 </div>
                             </div>
                             <div class="col sm-6 md-6">
                                 <div class="form-group">
-                                    <label for="inputLastname" class="text-muted text-truncate">Apellidos</label>
+                                    <label for="inputLastname" class="text-truncate">Apellidos</label>
                                     <input type="text" formControlName="lastname" class="form-control"
-                                        id="inputLastname">
+                                        id="inputLastname" autocomplete="off">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col sm-12 md-6">
+                            <div class="col sm-12">
                                 <div class="form-group">
-                                    <label for="inputIdentificationNumber" class="text-muted text-truncate">No. de
+                                    <label for="inputIdentificationNumber" class="text-truncate">No. de
                                         identificación</label>
-                                    <input type="text" formControlName="identificationNumber" class="form-control"
-                                        id="inputIdentificationNumber">
-                                </div>
-                            </div>
-                            <div class="col sm-12 md-6">
-                                <div class="form-group">
-                                    <label for="inputCellPhoneNumber" class="text-muted text-truncate">Número de
-                                        celular</label>
-                                    <input type="text" formControlName="cellPhoneNumber" class="form-control"
-                                        id="inputCellPhoneNumber">
+                                    <input type="text" formControlName="identificationNumber" readonly
+                                        class="form-control" id="inputIdentificationNumber" autocomplete="off">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col sm-12 ">
                                 <div class="form-group">
-                                    <label for="inputMail" class="text-muted text-truncate">Correo
+                                    <label for="inputMail" class="text-truncate">Correo
                                         electrónico</label>
-                                    <input type="mail" formControlName="mail" class="form-control" id="inputMail">
+                                    <input type="mail" formControlName="mail" class="form-control" id="inputMail"
+                                        autocomplete="off">
+                                    <small
+                                        *ngIf="shape.controls['mail'].dirty && shape.controls['mail'].errors?.required"
+                                        class="form-text mt-1 text-danger animated fadeIn faster">El campo de correo electrónico es
+                                        requerido</small>
+                                    <small
+                                        *ngIf="shape.controls['mail'].dirty && shape.controls['mail'].errors?.required"
+                                        class="form-text mt-1 text-danger animated fadeIn faster">El campo no tiene el formato de correo
+                                        electrónico</small>
                                 </div>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
                             <div class="form-group mx-auto">
-                                <input type="submit" class="btn mt-3 btn-raised btn-primary" value="Modificar datos"
-                                    aria-pressed="true">
+                                <input type="submit" [disabled]="shape.invalid" class="btn mt-3 btn-raised btn-primary"
+                                    value="Modificar datos" aria-pressed="true" data-toggle="modal"
+                                    data-target="#modalConfirmData">
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalConfirmData" data-backdrop="static" data-keyboard="false"
+                            tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmar modificación de datos
+                                        </h5>
+                                        <button type="button" (click)="clearPasswordField()" class="close"
+                                            data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <form class="px-4">
+                                                    <div class="form-group">
+                                                        <label for="inputPassword">Contraseña</label>
+                                                        <input type="password" class="form-control" #password
+                                                            id="inputPassword" ([ngModel])="passwordModel">
+                                                        <small *ngIf="passwordRequired && !password.value"
+                                                            class="form-text mt-1 text-danger animated fadeIn faster">* Usted debe de
+                                                            diligenciar su contraseña de acceso.</small>
+                                                        <small *ngIf="passwordError"
+                                                            class="form-text mt-1 text-danger animated fadeIn faster">* Lo sentimos, la
+                                                            contraseña que usted ha ingresado es incorrecta.</small>
+                                                    </div>
+                                                    <div class="form-group d-flex flex-row-reverse">
+                                                        <button type="button" (click)="onSubmit(password)"
+                                                            class="btn btn-outline-primary">Guardar
+                                                            cambios</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="modal-footer">                                    
+                                        
+                                    </div> -->
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -63,3 +110,5 @@
         </div>
     </div>
 </div>
+
+<app-footer></app-footer>

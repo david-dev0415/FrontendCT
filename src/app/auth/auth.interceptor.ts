@@ -25,12 +25,13 @@ export class AuthInterceptor implements HttpInterceptor {
                         if (err.status === 401)
                             this.router.navigateByUrl('/sign-in');
                         else (err.status === 403)
-                        this.router.navigateByUrl('/forbidden');
+                        // this.router.navigateByUrl('/forbidden');
                     }
                 );
         }
         else {
-            this.router.navigateByUrl('/sign-in');
+            // Realizar redirección a la página "forbidden" menos a la de register.
+            // this.router.navigateByUrl('/forbidden');
         }
     }
 }

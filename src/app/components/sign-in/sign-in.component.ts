@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -10,6 +10,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+
+  @Input() identificationNumber: string;
 
   isLoginError: boolean = false;
   shape: FormGroup;
@@ -34,7 +36,7 @@ export class SignInComponent implements OnInit {
         this.isLoginError = true;
         setTimeout(() => {
           this.isLoginError = false;
-        }, 2500);
+        }, 2000);
       });
     // console.log(this.shape.get('username').value);    
   }
@@ -56,8 +58,5 @@ export class SignInComponent implements OnInit {
       'password': new FormControl('', [Validators.required])
     });
 
-    
-
   }
-
 }

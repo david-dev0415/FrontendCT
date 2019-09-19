@@ -1,56 +1,69 @@
-<div class="card mx-auto w-50">
-    <div class="card-header">
-        <h3 class="text-center px-2">Registro de usuarios</h3>
-    </div>
-    <div class="card-body">
-        <form [formGroup]="shape" class="col s-12 white" (ngSubmit)="OnSubmit()">
-            <div class="row">
-                <div class="form-group col-6">
-                    <label for="inputIdentification">Usuario</label>
-                    <input class="form-control" type="text" formControlName="UserName" id="inputIdentification">
-                    <small class="text-muted">Modo en el que el usuario iniciará sesión</small>
-                </div>
-                <div class="form-group col-6">
-                    <label for="inputPassword">Contraseña</label>
-                    <input class="form-control" type="password" formControlName="Password" id="inputPassword">
-                    <!-- Mensajes de validación -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-12">
-                    <label for="inputEmail">Correo Electronico</label>
-                    <input class="form-control" type="text" formControlName="Email" id="inputEmail">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-6">
-                    <label for="inputFirstName">Nombres</label>
-                    <input class="form-control" type="text" formControlName="FirstName" id="inputFirstName">
-                </div>
-                <div class="form-group col-6">
-                    <label for="inputLastName">Apellidos</label>
-                    <input class="form-control" type="text" formControlName="LastName" id="inputLastName">
-                </div>
-            </div>
-            <div class="row" *ngIf="roles">
-                <div class="checkbox " *ngFor="let item of roles;let i = index">
-                    <label [for]="'roles-'+i">
-                        <input type="checkbox" name="optionsRadios" [id]="'roles-'+i" [value]="item.Id"
-                            [checked]="item.selected">
-                        <span class="checkbox-decorator">
-                            <span class="check"></span>
-                            <div class="ripple-container"></div>
-                        </span>
-                        {{ item.Name }}
-                    </label>
-                </div>
-            </div>
+<p class="display-4 px-2 py-2 text-white bg-dark text-center mb-3 animated fadeIn fast">Registro de usuarios</p>
 
-            <div class="row">
-                <div class="form-group col s-12">
-                    <button class="btn btn-block btn-primary" type="submit">Registrar</button>
+<div class="container mt-5 animated fadeIn">
+    <div class="card mx-auto w-50">
+        <div class="card-header">
+            <h3 class="text-center px-2">Creación de cuenta</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="shape" class="col sm-12 white" (ngSubmit)="OnSubmit()">
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="inputIdentification" class="ml-3">No. identificación</label>
+                        <input class="form-control" type="text" formControlName="UserName" id="inputIdentification"
+                            autocomplete="off" numbersOnly>
+                        <small class="text-muted">Campo para la autenticación del usuario.</small>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="inputPassword" class="ml-3">Contraseña</label>
+                        <input class="form-control" type="password" formControlName="Password" id="inputPassword"
+                            autocomplete="off">
+                        <!-- Mensajes de validación -->
+                    </div>
                 </div>
-            </div>
-        </form>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="inputEmail" class="ml-3">Correo Electronico</label>
+                        <input class="form-control" type="text" formControlName="Email" id="inputEmail"
+                            autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="inputFirstName" class="ml-3">Nombres</label>
+                        <input class="form-control" type="text" formControlName="FirstName" id="inputFirstName"
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="inputLastName" class="ml-3">Apellidos</label>
+                        <input class="form-control" type="text" formControlName="LastName" id="inputLastName"
+                            autocomplete="off">
+                    </div>
+                </div>
+                <div class="row" *ngIf="roles">
+                    <div class="checkbox " *ngFor="let item of roles;let i = index">
+                        <label [for]="'roles-'+i">
+                            <input type="checkbox" name="optionsRadios" [id]="'roles-'+i" [value]="item.Id"
+                                [checked]="item.selected">
+                            <span class="checkbox-decorator">
+                                <span class="check"></span>
+                                <div class="ripple-container"></div>
+                            </span>
+                            {{ item.Name }}
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col sm-6 mt-3 mb-0">
+                        <button class="btn btn-raised btn-block btn-secondary" (click)="resetForm(shape)"
+                            type="button">Limpiar</button>
+                    </div>
+                    <div class="form-group col sm-6 mt-3 mb-0">
+                        <button class="btn btn-raised btn-block btn-primary" type="submit">Registrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
