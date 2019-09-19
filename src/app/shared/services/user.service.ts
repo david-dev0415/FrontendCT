@@ -59,10 +59,11 @@ export class UserService {
 
   editPassword(data: any) {
     const body = {
-      UserName: data.identificationNumber,
-      Password: data.Password,
+      UserName: data.UserName,
+      CurrentPassword: data.CurrentPassword,
       newPassword: data.newPassword
     }
+    console.log(body);
     return this.http.put(this.rootUrl + '/api/User/PutPassword', body);
   }
 
@@ -99,7 +100,7 @@ export class UserService {
       return claims;
     } catch (Exception) {
       console.log(Exception);
-      this.router.navigateByUrl('/sign-in');
+      this.router.navigateByUrl('/forbidden');
     }
   }
 

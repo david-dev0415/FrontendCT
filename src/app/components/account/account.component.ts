@@ -23,7 +23,7 @@ export class AccountComponent implements OnInit {
   show: boolean = false;
   shape: FormGroup;
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private toastService: ToastrService) {
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private toastrService: ToastrService) {
     this.showData();
     this.formValidator();
   }
@@ -92,7 +92,7 @@ export class AccountComponent implements OnInit {
           this.userService.editUser(this.shape.value, password.value).subscribe(
             res => {
               if (res != null) {
-                this.toastService.success(`Su usuario ${this.userName} fue modificado con éxito.`, 'Solicitud correcta');
+                this.toastrService.success(`Su usuario ${this.userName} fue modificado con éxito.`, 'Solicitud correcta');
                 setTimeout(() => {
                   this.router.navigate(['/home']);                  
                 }, 2000);
@@ -100,7 +100,7 @@ export class AccountComponent implements OnInit {
             },
             err => {
               console.log(err);
-              this.toastService.error('Ocurrió un error al enviar la solicitud', 'Ups!, lo sentimos');
+              this.toastrService.error('Ocurrió un error al enviar la solicitud', 'Ups!, lo sentimos');
             }
           );
         }

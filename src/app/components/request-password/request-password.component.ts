@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Router } from '@angular/router';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -13,6 +14,7 @@ declare var $: any;
 export class RequestPasswordComponent implements OnInit {
 
   userName: any;
+  name: any;
 
   // Form shape
   shapePasswords: FormGroup;
@@ -30,7 +32,7 @@ export class RequestPasswordComponent implements OnInit {
   confirmPasswordType: string;
   passwordType: string;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private toastrService: ToastrService, private router: Router, ) {
     this.iconTextCurrentPassword = "visibility";
     this.iconTextNewPassword = "visibility";
     this.iconTextConfirmPassword = "visibility";
@@ -48,7 +50,7 @@ export class RequestPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getClaims();
   }
 
   showPassword(password: any) {
@@ -72,40 +74,53 @@ export class RequestPasswordComponent implements OnInit {
     }
   }
 
+  getClaims() {
+    return this.userService.getUserClaims().then(values => {
+      if (values != null) {
+        this.userName = values['UserName'];
+        this.name = values['FirstName']
+      }
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   onSubmit() {
     if (!this.shapePasswords.valid) {
       return;
     }
 
+    let data = null;
+    data = {
+      "UserName": this.userName,
+      "CurrentPassword": this.shapePasswords.controls['currentPasswordControl'].value,
+      "newPassword": this.shapePasswords.controls['newPasswordControl'].value
+    };
 
+    if (data.newPassword === this.shapePasswords.controls['newConfirmPasswordControl'].value && this.userName != "") {
 
-    let userClaims = this.userService.getUserClaims();
-    userClaims.then(value => {
-      if (value != null && value.hasOwnProperty("UserName")) {
-        let data = null;
-        this.userName = value['userName'];
-        data = {
-          "UserName": this.userName,
-          "Password": this.shapePasswords.controls['newPasswordControl'].value,
-          "newPassword": this.shapePasswords.controls['newConfirmPasswordControl'].value
-        };
-        this.userService.editPassword(data).subscribe(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log(err);
+      this.userService.editPassword(data).subscribe(
+        res => {
+          if (res.hasOwnProperty("Succeeded")) {
+            this.toastrService.success('La contraseña fue modificada con éxito.', 'Solicitud correcta');
+            setTimeout(() => {
+              this.router.navigate(['/home']);              
+            }, 1000);
+          } else {
+            this.toastrService.warning('La contraseña actual que usted diligenció es incorrecta.', 'Ups!, lo sentimos');
           }
-        )
-      }
-    }).catch(err => {
-      console.log(err);
-    })
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } else {
+      return false;
+    }
+  }
 
+  showMessageOutputRerefrence() {
 
-
-    // this.userService.editPassword(data)
-    // console.log(this.shapePasswords.value);
   }
 
   formValidator() {
