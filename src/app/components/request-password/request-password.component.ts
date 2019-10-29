@@ -32,10 +32,10 @@ export class RequestPasswordComponent implements OnInit {
   confirmPasswordType: string;
   passwordType: string;
 
-  constructor(private userService: UserService, private toastrService: ToastrService, private router: Router, ) {
-    this.iconTextCurrentPassword = "visibility";
-    this.iconTextNewPassword = "visibility";
-    this.iconTextConfirmPassword = "visibility";
+  constructor(private userService: UserService, private toastrService: ToastrService, private router: Router) {
+    this.iconTextCurrentPassword = "visibility_off";
+    this.iconTextNewPassword = "visibility_off";
+    this.iconTextConfirmPassword = "visibility_off";
 
     this.currentPasswordType = "password";
     this.newPasswordType = "password";
@@ -68,21 +68,25 @@ export class RequestPasswordComponent implements OnInit {
         (this.iconTextNewPassword == "visibility_off") ? this.iconTextNewPassword = "visibility" : this.iconTextNewPassword = "visibility_off";
         break;
       default:
+        (this.newPasswordType == "password") ? this.newPasswordType = "text" : this.newPasswordType = "password";
+        (this.iconTextNewPassword == "visibility_off") ? this.iconTextNewPassword = "visibility" : this.iconTextNewPassword = "visibility_off";
         (this.confirmPasswordType == "password") ? this.confirmPasswordType = "text" : this.confirmPasswordType = "password";
         (this.iconTextConfirmPassword == "visibility_off") ? this.iconTextConfirmPassword = "visibility" : this.iconTextConfirmPassword = "visibility_off";
         break;
     }
   }
 
-  getClaims() {
-    return this.userService.getUserClaims().then(values => {
+  async getClaims() {
+    try {
+      const values = await this.userService.getUserClaims();
       if (values != null) {
         this.userName = values['UserName'];
-        this.name = values['FirstName']
+        this.name = values['FirstName'];
       }
-    }).catch(err => {
+    }
+    catch (err) {
       console.log(err);
-    })
+    }
   }
 
   onSubmit() {
@@ -106,6 +110,9 @@ export class RequestPasswordComponent implements OnInit {
             setTimeout(() => {
               this.router.navigate(['/home']);              
             }, 1000);
+            // $( "#success-btn" ).click(function() {
+            //   $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+            // });
           } else {
             this.toastrService.warning('La contraseña actual que usted diligenció es incorrecta.', 'Ups!, lo sentimos');
           }
@@ -126,8 +133,8 @@ export class RequestPasswordComponent implements OnInit {
   formValidator() {
     let shape = this.shapePasswords = new FormGroup({
       'currentPasswordControl': new FormControl('', [Validators.required]),
-      'newPasswordControl': new FormControl('', [Validators.required]),
-      'newConfirmPasswordControl': new FormControl('', [Validators.required])
+      'newPasswordControl': new FormControl('', [Validators.required, Validators.minLength(6)]),
+      'newConfirmPasswordControl': new FormControl('', [Validators.required, , Validators.minLength(6)])
     });
 
     let groupPassword = {

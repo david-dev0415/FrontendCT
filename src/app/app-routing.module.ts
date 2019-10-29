@@ -24,11 +24,11 @@ const routes: Routes = [
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'reports', component: ReportsComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'account', component: AccountComponent },
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'request-password', component: RequestPasswordComponent },
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' }
+  { path: '**', redirectTo: '/sign-in', pathMatch: 'full' }
 ];
 
 @NgModule({

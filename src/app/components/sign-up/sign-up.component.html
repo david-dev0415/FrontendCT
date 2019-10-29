@@ -9,7 +9,7 @@
             <form [formGroup]="shape" class="col sm-12 white" (ngSubmit)="OnSubmit()">
                 <div class="row">
                     <div class="form-group col-sm-12 col-md-6">
-                        <label for="inputIdentification" class="ml-3">No. identificación</label>
+                        <label for="inputIdentification" class="ml-3">No. Identificación</label>
                         <input class="form-control" type="text" formControlName="UserName" id="inputIdentification"
                             autocomplete="off" numbersOnly>
                         <small class="text-muted">Campo para la autenticación del usuario.</small>
@@ -40,18 +40,23 @@
                             autocomplete="off">
                     </div>
                 </div>
-                <div class="row" *ngIf="roles">
-                    <div class="checkbox " *ngFor="let item of roles;let i = index">
+                <div class="row ml-0" *ngIf="roles">
+                    <p class="font-weight-normal mt-1" style="font-size:15px">Roles:</p>
+                    <div class="radio p-1 mx-2" *ngFor="let item of roles; let i = index">
                         <label [for]="'roles-'+i">
-                            <input type="checkbox" name="optionsRadios" [id]="'roles-'+i" [value]="item.Id"
-                                [checked]="item.selected">
-                            <span class="checkbox-decorator">
-                                <span class="check"></span>
-                                <div class="ripple-container"></div>
-                            </span>
+                            <input type="radio" name="Role" formControlName="Role" [id]="'roles-'+i" [value]="item.Name">                                
+                             <span class="bmd-radio"><div class="ripple-container"></div></span>
                             {{ item.Name }}
                         </label>
                     </div>
+                    <!-- <div class="radio p-1 mx-2" *ngFor="let item of roles; let i = index">
+                            <label [for]="'roles-'+i">
+                                <input type="radio" name="Role" formControlName="Role" [id]="'roles-'+i" [value]="item.Id"
+                                [checked]="item.selected"  (change)="updateSelectedRoles(i)">
+                                 <span class="bmd-radio"><div class="ripple-container"></div></span>
+                                {{ item.Name }}
+                            </label>
+                        </div> -->                    
                 </div>
 
                 <div class="row">

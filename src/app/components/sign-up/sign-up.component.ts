@@ -14,6 +14,7 @@ export class SignUpComponent implements OnInit {
   user: User;
   shape: FormGroup;
   roles: any[];
+  role: any;
 
   constructor(private userService: UserService, private toastr: ToastrService) {
     this.formValidator();    
@@ -21,7 +22,6 @@ export class SignUpComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toastr.show('sds')
     this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
@@ -30,27 +30,27 @@ export class SignUpComponent implements OnInit {
     try {
       this.userService.getAllRoles().subscribe(
         (data: any) => {
-          data.forEach(obj => obj.selected = false);
+          data.forEach(obj => obj.selected = true);
           this.roles = data;
         }
       );
     } catch (error) {
-      console.warn(error);
+      this.toastr.error(`Error ${error}`);
     }  
   }
 
   OnSubmit() {
-    var x = this.roles.filter(x => x.selected).map(y => y.Name);
-    this.userService.registerUser(this.shape.value, x)
-      .subscribe((data: any) => {
+    // var x = this.roles.filter(x => x.selected).map(y => y.Name);               
+    let roles = [this.shape.get('Role').value];
+    this.userService.registerUser(this.shape.value, roles)
+      .subscribe((data: any) => {        
         if (data.Succeeded == true) {
           this.resetForm(this.shape);
           this.toastr.success('El registro del usuario fue exitoso!');
         }
         else
-          this.toastr.error('data.Errors[0]');
+          this.toastr.error(data.Errors[0]);
       });
-    console.log(this.shape.value);
   }
 
   updateSelectedRoles(index) {
@@ -65,7 +65,8 @@ export class SignUpComponent implements OnInit {
         Password: '',
         Email: '',
         FirstName: '',
-        LastName: ''
+        LastName: '',
+        Role: ''
       }
     if (this.roles)
       this.roles.map(x => x.selected = false);
@@ -93,7 +94,8 @@ export class SignUpComponent implements OnInit {
         ]
       ),
       'FirstName': new FormControl('', Validators.required),
-      'LastName': new FormControl('', Validators.required)
+      'LastName': new FormControl('', Validators.required),
+      'Role': new FormControl('', Validators.required)    
     });
   }
 

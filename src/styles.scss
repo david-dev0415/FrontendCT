@@ -157,13 +157,13 @@ body {
   }
 }
 
-/*Style Tooltips*/
+/* Style Tooltips */
 .tooltip-inner {
   max-width: 200px;
   padding: 3px 8px;
   color: #fff;
   text-align: center;
-  background-color: #202020!important;
+  background-color: #202020 !important;
   border-radius: .25rem;
 }
 
@@ -198,4 +198,68 @@ body {
   content: "";
   border-width: 5px 0 5px 5px;
   border-left-color: #202020;
+}
+
+/* Styles Labels bootstrap */
+.bmd-form-group .bmd-label-static,
+.bmd-form-group.is-filled .bmd-label-floating,
+.bmd-form-group .is-filled .bmd-label-floating,
+.bmd-form-group.is-focused .bmd-label-floating,
+.bmd-form-group .is-focused .bmd-label-floating {
+  top: 1rem;
+  left: 0;
+  font-size: .75rem;
+}
+
+.bmd-form-group .bmd-label,
+.bmd-form-group .bmd-label {
+  position: absolute;
+  pointer-events: none;
+  transition: all .3s ease;
+}
+
+
+.bmd-form-group .custom-file-control,
+.bmd-form-group .form-control,
+.bmd-form-group input::placeholder,
+.bmd-form-group label {
+  line-height: 1;
+}
+
+
+label,
+.bmd-label {
+  display: inline-block;
+  margin-bottom: .5rem;
+  font-size: .8rem;
+  color: rgba(0, 0, 0, .26);
+}
+
+
+input.form-control:focus,
+input.bmd-form-control:focus {
+  label {
+    color: #009688;
+    position: absolute;
+    pointer-events: none;
+    transition: all .3s ease;
+  }
+}
+
+.is-focused {
+  color: #009688;
+}
+
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.all {
+  -moz-user-select: all;
+  -webkit-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
 }

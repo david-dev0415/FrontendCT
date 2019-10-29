@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from './shared/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
   
   userClaims: any;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     // this.userService.getUserClaims().subscribe((data: any) => {
     //   this.userClaims = data;
     // });
@@ -19,11 +20,11 @@ export class AppComponent {
     // if(this.userService.roleMatch(['Author'])) {
     //   //do the operation
     // }    
-
     this.userService.getUserClaims().then(data => {      
       this.userClaims = data;    
     }).catch(err => {
-      console.log(err);
+      // console.log(err);
+      // this.router.navigate(['sign-in']);
     })    
   }
 }

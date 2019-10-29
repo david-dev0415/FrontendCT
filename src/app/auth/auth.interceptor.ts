@@ -30,8 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 );
         }
         else {
-            // Realizar redirección a la página "forbidden" menos a la de register.
-            // this.router.navigateByUrl('/forbidden');
+            // this.router.navigateByUrl('/sign-in');
         }
     }
 }

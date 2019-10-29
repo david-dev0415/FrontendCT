@@ -97,7 +97,7 @@ export class ReportsService {
     /**
      * get list of reports
      */
-    public getListReports() {
+    getListReports() {
         return this.listReports;
     }
 

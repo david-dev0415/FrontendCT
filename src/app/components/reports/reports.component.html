@@ -7,28 +7,63 @@
         <div class="col-12 py-3">
             <div class="card mx-auto">
                 <div class="card-header w-100 p-0">
-                    <div class="row p-0 m-0">
-                        <div id="box-field-search" class="col-10 p-0 m-0">
-                            <form id="form-header" class="m-0">
+                    <form [formGroup]="shapeSearchByFilters" (ngSubmit)="searchReport()" novalidate>
+                        <div class="row p-0 m-0">
+                            <div class="col-sm-4 col-md-4 px-1 mt-3 mb-0">
                                 <div class="input-group mb-0">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <i class="material-icons icon-search">search</i>
-                                        </span>
+                                    <div class="form-group mw-100 bmd-form-group input-group-prepend d-inline mx-2"
+                                        style="padding: 1.65px;">
+                                        <label for="dateBegin">
+                                            <i class="material-icons">search</i>
+                                            Búsqueda
+                                        </label>
+                                        <input type="search" class="form-control" formControlName="search" id="input-search"
+                                            placeholder="Criterio de búsqueda">
                                     </div>
-                                    <input type="search" class="form-control" id="input-search"
-                                        placeholder="Número integrado del vehículo">
                                 </div>
-                            </form>
-                        </div>
-                        <div id="btn-options" class="col-2 text-center py-2 px-0 m-0">
-                            <span class="btn-group-sm">
-                                <button type="button" class="btn btn-outline-primary bmd-btn-fab">
-                                    <i class="material-icons">refresh</i>
+                            </div>
+                            <div class="col-sm-8 col-md-7 px-2 mt-3 mb-0">
+                                <div class="input-group mb-0">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6">
+                                            <div
+                                                class="form-group w-100 bmd-form-group d-inline input-group-prepend mx-2 ">
+                                                <label for="dateBegin">
+                                                    <i class="material-icons">date_range</i>
+                                                    Fecha inicio
+                                                </label>
+                                                <input type="date" class="form-control d-inline" formControlName="startDate" id="dateBegin">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="form-group d-inline mx-2 bmd-form-group">
+                                                <label for="dateBegin">
+                                                    <i class="material-icons">date_range</i>
+                                                    Fecha final
+                                                </label>
+                                                <input type="date" class="form-control d-inline" formControlName="finalDate" id="dateEnd">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="btn-options"
+                                class="col-sm-1 d-none d-md-block d-lg-block ml-sm-auto mx-0 mt-md-5">
+                                <span class="btn-group-sm">
+                                    <button type="button" (click)="loadData()" class="btn btn-outline-primary bmd-btn-fab" id="btn-search"
+                                        data-toggle="tooltip" data-placement="top" data-animation="true"
+                                        title="Cargar datos">
+                                        <i class="material-icons">refresh</i>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="col-sm-12 col-md-1 mt-3 mb-2 d-xs-block d-md-none">
+                                <button type="button" (click)="loadData()" class="btn w-100 btn-outline-primary" id="btn-search">
+                                    Cargar datos
                                 </button>
-                            </span>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="card-body table-responsive">
                     <table id="tbl-reports"
@@ -37,9 +72,10 @@
                             <tr class="text-center mr-4">
                                 <th scope="col">#</th>
                                 <th scope="col">Vehículo</th>
-                                <th scope="col">Viajes</th>
                                 <th scope="col">Pasajeros</th>
-                                <th scope="col">Detalle</th>
+                                <th scope="col">Viajes</th>
+                                <th scope="col" data-toggle="tooltip" data-placement="right" data-animation="true"
+                                title="Ver reporte detallado">Detalle</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -83,15 +119,15 @@
                                                                     <th class="text-white font-weight-normal"
                                                                         scope="col">Vel.Max</th>
                                                                     <th class="text-white font-weight-normal"
-                                                                        scope="col">Horas</th>
+                                                                        scope="col">Tiempo</th>
                                                                     <th class="text-white font-weight-normal"
                                                                         scope="col">Pas.viaje</th>
                                                                     <th class="text-white font-weight-normal"
                                                                         scope="col">Marc.Desc.</th>
                                                                     <th class="text-white font-weight-normal"
-                                                                        scope="col">Pas a cobrar</th>
-                                                                    <th class="text-white font-weight-normal"
                                                                         scope="col">Monto</th>
+                                                                    <th class="text-white font-weight-normal"
+                                                                        scope="col">Bloq(s)</th>
                                                                     <th class="text-white font-weight-normal"
                                                                         scope="col">Km</th>
                                                                 </tr>
@@ -133,4 +169,4 @@
     </div>
 </div>
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

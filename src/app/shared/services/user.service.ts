@@ -33,7 +33,7 @@ export class UserService {
       'Something bad happened; please try again later.');
   }
 
-  registerUser(user: User, roles: string[]) {
+  registerUser(user, roles) {
     const body = {
       UserName: user.UserName,
       Password: user.Password,
@@ -42,6 +42,7 @@ export class UserService {
       LastName: user.LastName,
       Roles: roles
     }
+    console.log(roles);
     var reqHeader = new HttpHeaders({ 'No-Auth': 'True' });
     return this.http.post(this.rootUrl + '/api/User/Register', body, { headers: reqHeader });
   }
@@ -61,8 +62,10 @@ export class UserService {
     const body = {
       UserName: data.UserName,
       CurrentPassword: data.CurrentPassword,
-      newPassword: data.newPassword
+      newPassword: data.newPassword,
+      DefaultPassword: data.DefaultPassword
     }
+    
     console.log(body);
     return this.http.put(this.rootUrl + '/api/User/PutPassword', body);
   }
