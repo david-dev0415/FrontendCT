@@ -17,8 +17,9 @@ export class NavbarComponent implements OnInit {
     this.userService.getUserClaims().then(data => {
       this.userClaims = data;
       this.username = this.userClaims.UserName;
+      localStorage.setItem("numberId", this.username);
     }).catch(err => {
-      console.log(err);
+      this.logout();
     });
 
     if (this.userService.roleMatch(['Author'])) {
@@ -31,7 +32,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('userToken');
+    localStorage.clear();
     this.router.navigate(['/sign-in']);
   }
 }

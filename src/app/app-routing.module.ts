@@ -12,12 +12,13 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { AboutComponent } from './components/about/about.component';
 import { AccountComponent } from './components/account/account.component';
 import { RequestPasswordComponent } from './components/request-password/request-password.component';
-
+import { AdminPanelComponentComponent } from './components/admin-panel-component/admin-panel-component.component';
 
 /**
  * Auth
  */
 import { AuthGuard } from './auth/auth.guard';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'request-password', component: RequestPasswordComponent },
+  { path: 'adminPanel', component: AdminPanelComponentComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] }},
   { path: '**', redirectTo: '/sign-in', pathMatch: 'full' }
 ];
 

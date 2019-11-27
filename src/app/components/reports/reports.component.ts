@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportsService, Reports } from 'src/app/shared/services/reports.service';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { isArray } from 'util';
 
 declare var $: any;
 
@@ -15,10 +16,10 @@ export class ReportsComponent implements OnInit {
   shapeSearchByFilters: FormGroup;
   initialDateRange: any;
   endDateRange: any;
+  consolidatedList: any;
 
   constructor(private reportsService: ReportsService, private formBuilder: FormBuilder) {
     // Jquery for dataTable
-
     $(document).ready(function () {
       var table = $('#tbl-reports').DataTable({
         "dom": '<"top"l><"buttom"tip>',
@@ -47,8 +48,10 @@ export class ReportsComponent implements OnInit {
       });
 
       $('#input-search').on('keyup', function () {
-        table.search($('#input-search').val()).draw();
-      })
+        table.search($('#input-search').val());
+        table.draw();
+      });      
+      
     });
 
     $(function () {
@@ -69,7 +72,8 @@ export class ReportsComponent implements OnInit {
 
     this.onChanges();
 
-    this.listReports = this.reportsService.getListReports();
+    this.listReports = this.reportsService.getListReports();      
+    this.loadData();
   }
 
   dateRangeFilter() {
@@ -77,14 +81,43 @@ export class ReportsComponent implements OnInit {
 
   onChanges() {
     this.shapeSearchByFilters.valueChanges.subscribe(val => {
-      console.log(val);
+      if (val.search == "") {
+        this.loadData();
+      }
+
+      document.getElementById("input-search").addEventListener("keydown", (e) => {
+        if (val.search.length > 0) {          
+          
+        }
+
+        if (e.keyCode == 8 && val.search == "") {
+            
+        } 
+          
+        if (e.keyCode == 46 && val.search == "") {
+          // this.loadData();
+          // e.preventDefault();
+        }
+      });           
     });
   }
-
+  
   searchReport() {    
   }
 
   loadData() {
+    // this.reportsService.getConsolidated(localStorage.getItem('numberId')).subscribe(data => {
+    //   this.consolidatedList = data;        
+    // }); 
+    this.reportsService.getConsolidated(localStorage.getItem('numberId')).then(values => {
+      if (values != null) {
+        this.consolidatedList = values;
+        console.log(this.consolidatedList);
+      }
+    }).catch(err => {
+      console.log(err);
+    })
+    
   }
 
   formatDate(date?: any, yesterday?: boolean) {

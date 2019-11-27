@@ -42,6 +42,7 @@ import { ReportsService } from './shared/services/reports.service';
 import { NumbersOnlyDirective } from './directives/number-only.directive';
 import { RequestPasswordComponent } from './components/request-password/request-password.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AdminPanelComponentComponent } from './components/admin-panel-component/admin-panel-component.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AccountComponent,
     NumbersOnlyDirective,
     RequestPasswordComponent,
-    FooterComponent
+    FooterComponent,
+    AdminPanelComponentComponent
   ],
   imports: [
     AppRoutingModule,

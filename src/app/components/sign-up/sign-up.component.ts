@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../shared/user.model';
@@ -31,6 +31,10 @@ export class SignUpComponent implements OnInit {
       this.userService.getAllRoles().subscribe(
         (data: any) => {
           data.forEach(obj => obj.selected = true);
+          if (data != null) {
+            console.log(data)
+          }
+
           this.roles = data;
         }
       );
@@ -42,6 +46,7 @@ export class SignUpComponent implements OnInit {
   OnSubmit() {
     // var x = this.roles.filter(x => x.selected).map(y => y.Name);               
     let roles = [this.shape.get('Role').value];
+    alert(1)
     this.userService.registerUser(this.shape.value, roles)
       .subscribe((data: any) => {        
         if (data.Succeeded == true) {

@@ -22,15 +22,20 @@ export class AuthInterceptor implements HttpInterceptor {
                 .do(
                     succ => { },
                     err => {
-                        if (err.status === 401)
+                        if (err.status === 401) {
+                            localStorage.clear();
                             this.router.navigateByUrl('/sign-in');
+                        }                            
                         else (err.status === 403)
                         // this.router.navigateByUrl('/forbidden');
                     }
                 );
         }
         else {
-            // this.router.navigateByUrl('/sign-in');
+            // Provición
+            if (this.router.url != '/sign-up') {
+                // this.router.navigateByUrl('/sign-in');
+            }            
         }
     }
 }

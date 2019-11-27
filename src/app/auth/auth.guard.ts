@@ -24,8 +24,10 @@ export class AuthGuard implements CanActivate {
     } else {
       this.userService.getUserClaims().then(data => {
         if (data == null || data == "" || data['Code'] == "401")
+          localStorage.clear();
           this.router.navigate(['/sign-in']);
       }).catch(err => {
+          localStorage.clear();
         this.router.navigateByUrl('sign-in');
       });
 

@@ -18,7 +18,7 @@
                                             Búsqueda
                                         </label>
                                         <input type="search" class="form-control" formControlName="search" id="input-search"
-                                            placeholder="Criterio de búsqueda">
+                                            placeholder="Criterio de búsqueda" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -79,11 +79,11 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <tr class="" *ngFor="let report of listReports; let i = index;">
-                                <th scope="row"> {{ i + 1}} </th>
-                                <td scope="row">{{ report.vehiculo }}</td>
-                                <td>{{ report.viajes }}</td>
-                                <td>{{ report.pasajeros }}</td>
+                            <tr class="" *ngFor="let consolidated of consolidatedList; let i = index;">
+                                <th scope="row"> {{ i + 1 }} </th>
+                                <td scope="row">{{ consolidated.CodVehicle }}</td>
+                                <td>{{ consolidated.Passenger }}</td>
+                                <td>{{ consolidated.LapsManual }}</td>
                                 <td scope="row">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary btn-visibility" data-toggle="modal"
@@ -115,9 +115,7 @@
                                                                     <th class="text-white font-weight-normal"
                                                                         scope="col">Inicio</th>
                                                                     <th class="text-white font-weight-normal"
-                                                                        scope="col">Fin</th>
-                                                                    <th class="text-white font-weight-normal"
-                                                                        scope="col">Vel.Max</th>
+                                                                        scope="col">Fin</th>                                                               
                                                                     <th class="text-white font-weight-normal"
                                                                         scope="col">Tiempo</th>
                                                                     <th class="text-white font-weight-normal"
@@ -135,7 +133,6 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <th scope="row"></th>
-                                                                    <td></td>
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td></td>
