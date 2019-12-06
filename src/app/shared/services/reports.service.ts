@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { throwError } from 'rxjs';
 import { environment } from '../../../environments/environment.prod';
 import { Router } from '@angular/router';
+import { ConsolidatedInterface } from './interfaces/consolidated.interface';
 
 @Injectable()
 export class ReportsService {
@@ -97,7 +98,9 @@ export class ReportsService {
             viajes: '3',
             pasajeros: '95'
         }
-    ];
+    ];    
+
+    public consolidatedList: any;
 
     constructor(private http: HttpClient, private router: Router) {
     }
@@ -127,6 +130,7 @@ export class ReportsService {
 
     getConsolidated(numberId: string) {
         return this.http.get(this.rootUrl + `/api/Reports/ConsolidatedNumberId?numberId=${numberId}`, { headers: this.reqHeaderNoAuth }).toPromise();
+         
     }
 }
 

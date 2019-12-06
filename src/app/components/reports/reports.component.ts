@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportsService, Reports } from 'src/app/shared/services/reports.service';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { isArray } from 'util';
+import { element } from 'protractor';
 
 declare var $: any;
 
@@ -23,6 +23,8 @@ export class ReportsComponent implements OnInit {
     $(document).ready(function () {
       var table = $('#tbl-reports').DataTable({
         "dom": '<"top"l><"buttom"tip>',
+        "select": "true",
+        "ordering": "true",
         "language": {
           "lengthMenu": "Mostrar _MENU_ registros por página",
           "zeroRecords": "No sé encontró ningun dato alusivo al criterio introducido",
@@ -111,8 +113,31 @@ export class ReportsComponent implements OnInit {
     // }); 
     this.reportsService.getConsolidated(localStorage.getItem('numberId')).then(values => {
       if (values != null) {
-        this.consolidatedList = values;
-        console.log(this.consolidatedList);
+        this.consolidatedList = values;                
+        const valuesClone = Object.assign([], values);
+        
+        // for (let i = 0; i < valuesClone.length; i++) {
+        //   const element = valuesClone[i];
+        //   console.log(new Array(element.Day))
+        // }
+
+        // valuesClone.forEach(element => {
+        //   let newElement = element.Day;
+        //   let array = new Array(newElement);
+        //   console.log(array)
+        // })
+     
+        
+        // for (let i = 0; i < this.consolidatedList) {
+
+        // }
+        // this.consolidatedList.forEach(element => {
+        //   console.log()
+        //   let startEnd = new Array();
+        //   startEnd.push(element.Day);
+        //   console.log(startEnd)
+        // })
+        // this.shapeSearchByFilters.get('startDate').setValue();
       }
     }).catch(err => {
       console.log(err);
