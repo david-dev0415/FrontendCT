@@ -129,8 +129,20 @@ export class ReportsService {
     }
 
     getConsolidated(numberId: string) {
-        return this.http.get(this.rootUrl + `/api/Reports/ConsolidatedNumberId?numberId=${numberId}`, { headers: this.reqHeaderNoAuth }).toPromise();
-         
+        return this.http.get(this.rootUrl + `/api/Reports/ConsolidatedNumberId?numberId=${numberId}`, { headers: this.reqHeaderNoAuth }).toPromise();         
+    }
+
+    getConsolidatedByDate(date: any, numberId: string) {
+        const paramsBody = {
+            StartDay: date.StartDay,
+            StartMonth: date.StartMonth,
+            StartYear: date.StartYear,
+            FinalDay: date.FinalDay,
+            FinalMonth: date.FinalMonth,
+            FinalYear: date.FinalYear,
+            NumberId: numberId
+        }                
+        return this.http.post(this.rootUrl + `/api/Reports/GetConsolidatedPerDateVehicle`, paramsBody).toPromise();        
     }
 }
 

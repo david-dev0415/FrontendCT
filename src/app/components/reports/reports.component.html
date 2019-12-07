@@ -72,6 +72,7 @@
                             <tr class="text-center mr-4">
                                 <th scope="col">#</th>
                                 <th scope="col">Vehículo</th>
+                                <th scope="col">Ruta realizada</th>
                                 <th scope="col">Pasajeros</th>
                                 <th scope="col">Viajes</th>
                                 <th scope="col" data-toggle="tooltip" data-placement="right" data-animation="true"
@@ -82,12 +83,13 @@
                             <tr class="" *ngFor="let consolidated of consolidatedList; let i = index;">
                                 <th scope="row"> {{ i + 1 }} </th>
                                 <td scope="row">{{ consolidated.CodVehicle }}</td>
+                                <td scope="row">{{ consolidated.CodRoute }}</td>
                                 <td>{{ consolidated.Passenger }}</td>
                                 <td>{{ consolidated.LapsManual }}</td>
                                 <td scope="row">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary btn-visibility" data-toggle="modal"
-                                        data-target="#exampleModalCenter" name="btnModal">
+                                        data-target="#exampleModalCenter" name="btnModal" (click)="loadDetailedReport(consolidated.IdConsolidate)">
                                         Ver <i class="material-icons icon-visibility d-inline mt-2">visibility</i>
                                     </button>
 

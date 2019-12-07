@@ -18,13 +18,19 @@ export class ReportsComponent implements OnInit {
   endDateRange: any;
   consolidatedList: any;
 
+  months: any[] = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
+    'Junio', 'Julio', 'Agosto', 'Septiembre',
+    'Octubre', 'Noviembre', 'Diciembre'
+  ];
+
   constructor(private reportsService: ReportsService, private formBuilder: FormBuilder) {
-    // Jquery for dataTable
+    // Realizar modificación para realizar "sort" en las columnas.
     $(document).ready(function () {
       var table = $('#tbl-reports').DataTable({
         "dom": '<"top"l><"buttom"tip>',
         "select": "true",
-        "ordering": "true",
+        "ordering": "true", 
         "language": {
           "lengthMenu": "Mostrar _MENU_ registros por página",
           "zeroRecords": "No sé encontró ningun dato alusivo al criterio introducido",
@@ -69,13 +75,18 @@ export class ReportsComponent implements OnInit {
     });
 
     // Insertar la fecha de hoy
+    // Prueba: insertar la fecha disponible en la base de datos.
+
     this.shapeSearchByFilters.get('startDate').setValue(this.formatDate(new Date(), false));
     this.shapeSearchByFilters.get('finalDate').setValue(this.formatDate(new Date(), false));
+
+    // this.shapeSearchByFilters.get('startDate').setValue(this.formatDate(new Date('2016/09/15'), false));
+    // this.shapeSearchByFilters.get('finalDate').setValue(this.formatDate(new Date('2016/09/15'), false));
 
     this.onChanges();
 
     this.listReports = this.reportsService.getListReports();      
-    this.loadData();
+    this.loadConsolidatedData();
   }
 
   dateRangeFilter() {
@@ -83,21 +94,19 @@ export class ReportsComponent implements OnInit {
 
   onChanges() {
     this.shapeSearchByFilters.valueChanges.subscribe(val => {
-      if (val.search == "") {
-        this.loadData();
+      this.loadConsolidatedData();
+      if (val.search == "") {        
       }
 
       document.getElementById("input-search").addEventListener("keydown", (e) => {
-        if (val.search.length > 0) {          
-          
+        if (val.search.length > 0) {                    
         }
 
-        if (e.keyCode == 8 && val.search == "") {
-            
+        if (e.keyCode == 8 && val.search == "") {            
         } 
           
         if (e.keyCode == 46 && val.search == "") {
-          // this.loadData();
+          // this.loadConsolidatedData();
           // e.preventDefault();
         }
       });           
@@ -107,42 +116,37 @@ export class ReportsComponent implements OnInit {
   searchReport() {    
   }
 
-  loadData() {
-    // this.reportsService.getConsolidated(localStorage.getItem('numberId')).subscribe(data => {
-    //   this.consolidatedList = data;        
-    // }); 
-    this.reportsService.getConsolidated(localStorage.getItem('numberId')).then(values => {
-      if (values != null) {
-        this.consolidatedList = values;                
-        const valuesClone = Object.assign([], values);
-        
-        // for (let i = 0; i < valuesClone.length; i++) {
-        //   const element = valuesClone[i];
-        //   console.log(new Array(element.Day))
-        // }
+  monthNumToName(monthnum) {
+    return this.months[monthnum] || '';
+  }
 
-        // valuesClone.forEach(element => {
-        //   let newElement = element.Day;
-        //   let array = new Array(newElement);
-        //   console.log(array)
-        // })
-     
-        
-        // for (let i = 0; i < this.consolidatedList) {
+  loadConsolidatedData() {
 
-        // }
-        // this.consolidatedList.forEach(element => {
-        //   console.log()
-        //   let startEnd = new Array();
-        //   startEnd.push(element.Day);
-        //   console.log(startEnd)
-        // })
-        // this.shapeSearchByFilters.get('startDate').setValue();
-      }
+    if (this.shapeSearchByFilters.get('startDate').value == null && this.shapeSearchByFilters.get('finalDate').value == null) return;
+
+    let bodyDate = {
+      StartDay: new Date(this.shapeSearchByFilters.get('startDate').value).getDate() + 1,
+      StartMonth: this.monthNumToName(new Date(this.shapeSearchByFilters.get('startDate').value).getMonth()),
+      StartYear: new Date(this.shapeSearchByFilters.get('startDate').value).getFullYear(),
+      FinalDay: new Date(this.shapeSearchByFilters.get('finalDate').value).getDate() + 1,
+      FinalMonth: this.monthNumToName(new Date(this.shapeSearchByFilters.get('finalDate').value).getMonth()),
+      FinalYear: new Date(this.shapeSearchByFilters.get('finalDate').value).getFullYear()
+    };
+
+    this.consolidatedList = null;
+
+    this.reportsService.getConsolidatedByDate(bodyDate, localStorage.getItem('numberId')).then(data => {
+      this.consolidatedList = data;
+      console.log(this.consolidatedList);
     }).catch(err => {
       console.log(err);
     })
-    
+    // Realizar búsqueda por defecto al día anterior 
+  }
+
+  // Pendiente
+  loadDetailedReport(idConsolidated: string) {
+    console.log(idConsolidated);
   }
 
   formatDate(date?: any, yesterday?: boolean) {
